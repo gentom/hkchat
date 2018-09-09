@@ -1,6 +1,7 @@
 module Main where
  
 import Network.Socket
+import System.IO
     
 main :: IO ()
 main = do
@@ -18,5 +19,7 @@ mainLoop sock = do
     
 runConn :: (Socket, SockAddr) -> IO ()
 runConn (sock, _) = do
-    send sock "Hello!\n"
-    close sock
+    hdl <- socketToHandle sock ReadWriteMode
+    hSetBuffering hdl NoBuffering
+    hPutStrLn hdl "Hello!"
+    hClose hdl
