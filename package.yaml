@@ -26,7 +26,7 @@ library:
 
 executables:
   hkchat:
-    main:                Main.hs
+    main:                Server.hs
     source-dirs:         app
     ghc-options:
     - -threaded
