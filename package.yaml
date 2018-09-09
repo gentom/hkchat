@@ -17,12 +17,15 @@ description:         Please see the README on GitHub at <https://github.com/gent
 
 dependencies:
 - base >= 4.7 && < 5
+- network
+- bytestring
+- unix
 
 library:
   source-dirs: src
 
 executables:
-  hkchat-exe:
+  hkchat:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
