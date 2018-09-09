@@ -2,6 +2,7 @@ module Main where
  
 import Network.Socket
 import System.IO
+import Control.Concurrent
     
 main :: IO ()
 main = do
@@ -14,7 +15,7 @@ main = do
 mainLoop :: Socket -> IO ()
 mainLoop sock = do
     conn <- accept sock     -- accept a connection and handle it
-    runConn conn            -- run our server's logic
+    forkIO (runConn conn)   -- split off each connection into its own thread (run our server's logic) 
     mainLoop sock           -- repeat
     
 runConn :: (Socket, SockAddr) -> IO ()
